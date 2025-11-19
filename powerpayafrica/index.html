@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>IoT Manufacturing Solutions | Device Management & Energy Monitoring</title>
+    <meta name="description" content="Enterprise IoT manufacturing solutions featuring advanced hardware for device management, power measurement, carbon dMRV, comprehensive SaaS platform, and AI-powered non-intrusive load monitoring.">
+    <meta property="og:title" content="IoT Manufacturing Solutions | Device Management & Energy Monitoring">
+    <meta property="og:description" content="Enterprise IoT manufacturing solutions featuring advanced hardware for device management, power measurement, carbon dMRV, comprehensive SaaS platform, and AI-powered non-intrusive load monitoring.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Space Grotesk', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        ring: "hsl(var(--ring))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(var(--secondary))",
+                            foreground: "hsl(var(--secondary-foreground))",
+                        },
+                        destructive: {
+                            DEFAULT: "hsl(var(--destructive))",
+                            foreground: "hsl(var(--destructive-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(var(--accent))",
+                            foreground: "hsl(var(--accent-foreground))",
+                        },
+                        popover: {
+                            DEFAULT: "hsl(var(--popover))",
+                            foreground: "hsl(var(--popover-foreground))",
+                        },
+                        card: {
+                            DEFAULT: "hsl(var(--card))",
+                            foreground: "hsl(var(--card-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* LIGHT MODE */
+        :root {
+          --button-outline: rgba(0,0,0, .10);
+          --badge-outline: rgba(0,0,0, .05);
+
+          /* Automatic computation of border around primary / danger buttons */
+          --opaque-button-border-intensity: -8; /* In terms of percentages */
+
+          /* Backgrounds applied on top of other backgrounds when hovered/active */
+          --elevate-1: rgba(0,0,0, .03);
+          --elevate-2: rgba(0,0,0, .08);
+
+          --background: 0 0% 98%;
+
+          --foreground: 220 13% 18%;
+
+          --border: 220 9% 88%;
+
+          --card: 0 0% 100%;
+
+          --card-foreground: 220 13% 18%;
+
+          --card-border: 220 9% 92%;
+
+          --popover: 0 0% 100%;
+
+          --popover-foreground: 220 13% 18%;
+
+          --popover-border: 220 9% 90%;
+
+          --primary: 217 91% 35%;
+
+          --primary-foreground: 0 0% 98%;
+
+          --secondary: 142 76% 36%;
+
+          --secondary-foreground: 0 0% 98%;
+
+          --muted: 220 6% 95%;
+
+          --muted-foreground: 220 9% 46%;
+
+          --accent: 25 95% 53%;
+
+          --accent-foreground: 0 0% 98%;
+
+          --destructive: 0 84% 45%;
+
+          --destructive-foreground: 0 0% 98%;
+
+          --input: 220 13% 75%;
+          --ring: 217 91% 35%;
+
+          --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          --font-serif: "Space Grotesk", Georgia, serif;
+          --font-mono: "JetBrains Mono", Menlo, monospace;
+          --radius: .5rem; /* 8px */
+        }
+
+        .dark {
+          --button-outline: rgba(255,255,255, .10);
+          --badge-outline: rgba(255,255,255, .05);
+
+          --opaque-button-border-intensity: 9;  /* In terms of percentages */
+
+          /* Backgrounds applied on top of other backgrounds when hovered/active */
+          --elevate-1: rgba(255,255,255, .04);
+          --elevate-2: rgba(255,255,255, .09);
+
+          --background: 220 13% 12%;
+
+          --foreground: 0 0% 95%;
+
+          --border: 220 13% 24%;
+
+          --card: 220 13% 16%;
+
+          --card-foreground: 0 0% 95%;
+
+          --card-border: 220 13% 20%;
+
+          --popover: 220 13% 16%;
+
+          --popover-foreground: 0 0% 95%;
+
+          --popover-border: 220 13% 20%;
+
+          --primary: 217 91% 60%;
+
+          --primary-foreground: 220 13% 12%;
+
+          --secondary: 142 76% 50%;
+
+          --secondary-foreground: 220 13% 12%;
+
+          --muted: 220 9% 18%;
+
+          --muted-foreground: 220 9% 65%;
+
+          --accent: 25 95% 60%;
+
+          --accent-foreground: 220 13% 12%;
+
+          --destructive: 0 84% 55%;
+
+          --destructive-foreground: 0 0% 98%;
+
+          --input: 220 13% 35%;
+          --ring: 217 91% 60%;
+        }
+
+        * {
+            border-color: hsl(var(--border));
+        }
+
+        body {
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            font-family: var(--font-sans);
+        }
+
+        .bg-grid-pattern {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .dark .bg-grid-pattern {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Elevation System */
+        .hover-elevate {
+            position: relative;
+            z-index: 0;
+        }
+
+        .hover-elevate::after {
+            content: "";
+            pointer-events: none;
+            position: absolute;
+            inset: 0px;
+            border-radius: inherit;
+            z-index: 999;
+            transition: background-color 0.3s ease;
+        }
+
+        .hover-elevate:hover::after {
+            background-color: var(--elevate-1);
+        }
+
+        .hover-elevate-2::after {
+            content: "";
+            pointer-events: none;
+            position: absolute;
+            inset: 0px;
+            border-radius: inherit;
+            z-index: 999;
+            transition: background-color 0.3s ease;
+        }
+
+        .hover-elevate-2:hover::after {
+            background-color: var(--elevate-2);
+        }
+
+        /* Mobile menu animation */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            max-height: 400px;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Progress bars animation */
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Button styles */
+        .btn-primary {
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            background: hsl(217 91% 45%);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: hsl(var(--foreground));
+            border: 1px solid hsl(var(--border));
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background: hsl(var(--muted));
+            border-color: hsl(var(--muted-foreground));
+        }
+
+        /* Timeline styles */
+        .timeline-line {
+            position: relative;
+        }
+
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: hsl(var(--border));
+        }
+
+        @media (min-width: 768px) {
+            .timeline-line::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0.75rem;
+            top: 1.5rem;
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background: hsl(var(--primary));
+            border: 4px solid hsl(var(--background));
+        }
+
+        @media (min-width: 768px) {
+            .timeline-dot {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Logo container */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo-container img {
+            height: 60px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full border-b border-border bg-card backdrop-blur supports-[backdrop-filter]:bg-card/95">
+        <div   style="margin-top:none;margin-bottom:none;"class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between gap-4">
+                <!-- Logo -->
+                <a href="#home" data-page="home" class="logo-container">
+                    <img src="powerpaylogo.png" alt="PowerPay Africa" class="logo-image">
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="#home" data-page="home" class="text-sm font-medium transition-colors hover:text-primary cursor-pointer">Home</a>
+                    <a href="#products" data-page="products" class="text-sm font-medium transition-colors hover:text-primary cursor-pointer">Products</a>
+                    <a href="#support" data-page="support" class="text-sm font-medium transition-colors hover:text-primary cursor-pointer">Support</a>
+                </nav>
+
+                <!-- Theme Toggle and Mobile Menu -->
+                <div  style="margin-top:none;margin-bottom:none;" class="flex items-center gap-2">
+                    <button id="theme-toggle" class="p-2 hover:bg-muted rounded-md transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden"></i>
+                    </button>
+                    <button id="mobile-menu-toggle" class="md:hidden p-2 hover:bg-muted rounded-md transition-colors">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="mobile-menu md:hidden border-t border-border bg-card">
+            <div class="max-w-7xl mx-auto px-4 py-4 space-y-3">
+                <a href="#home" data-page="home" class="block text-sm font-medium text-muted-foreground hover:text-primary py-2">Home</a>
+                <a href="#products" data-page="products" class="block text-sm font-medium text-muted-foreground hover:text-primary py-2">Products</a>
+                <a href="#features" data-page="features" class="block text-sm font-medium text-muted-foreground hover:text-primary py-2">Features</a>
+                <a href="#about" data-page="about" class="block text-sm font-medium text-muted-foreground hover:text-primary py-2">About</a>
+                <a href="#support" data-page="support" class="block text-sm font-medium text-muted-foreground hover:text-primary py-2">Support</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-1">
+        <!-- Home Page -->
+        <div id="page-home" class="page"  style="margin-top:none;margin-bottom:none;">
+            <section class="relative bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-16 md:py-24 lg:py-32 overflow-hidden"  style="margin-top:none;margin-bottom:none;">
+                <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-6 fade-in">
+                            <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight">
+                                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                                Award Winning IoT/AIoT Hardware and Software Solution Provider for the African Energy Sector.
+                                </span>
+                                <br />
+                            
+                            </h2>
+                            <p class="text-lg text-muted-foreground">
+                               PowerPay Africa is an East Africa -based energy and IoT technology company that provides hardware and software to finance and monitor electric appliances. The company, a spin off of Green Innovation Ventures Enterprises Ltd works with manufacturers, distributors, and lenders to make cooking and  productive-use equipment monitorable, accessible and affordable. 
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="#products" data-page="products" class="btn-primary text-center">View Products</a>
+                                <a href="#features" data-page="features" class="btn-outline text-center">Explore Features</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-center">
+                            <img src="img2.jpeg" alt="IoT Solutions" class="max-h-96 w-auto rounded-lg shadow-lg">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section  style="margin-top:none;margin-bottom:none;" class="py-16 md:py-24 bg-card" style="margin-top:none;margin-bottom:none;">
+                <div   style="margin-top:none;margin-bottom:none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
+                                <i class="fas fa-network-wired h-6 w-6"></i>
+                            </div>
+                            <div class="text-3xl font-serif font-bold">50K+</div>
+                            <div class="text-sm text-muted-foreground mt-1">Devices Managed</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
+                                <i class="fas fa-bolt h-6 w-6"></i>
+                            </div>
+                            <div class="text-3xl font-serif font-bold">30%</div>
+                            <div class="text-sm text-muted-foreground mt-1">Energy Saved</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
+                                <i class="fas fa-chart-line h-6 w-6"></i>
+                            </div>
+                            <div class="text-3xl font-serif font-bold">99.9%</div>
+                            <div class="text-sm text-muted-foreground mt-1">Uptime</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
+                                <i class="fas fa-shield-alt h-6 w-6"></i>
+                            </div>
+                            <div class="text-3xl font-serif font-bold">3+</div>
+                            <div class="text-sm text-muted-foreground mt-1">Countries</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Suite Section -->
+            <section  style="margin-top:none;margin-bottom:none;" class="py-16 md:py-24">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4" style="background-image: linear-gradient(to right, #002499, #00BF72); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;">
+                             Pioneering Energy Visibility Beyond the Meter using AI
+                        </h2>
+                        <p class="text-lg text-muted-foreground max-w-4xl mx-auto">
+PowerPay AI technology provides granular insights into household or SME energy consumption trends by breaking down overall energy usage into individual appliance components through the application of advanced Machine Learning techniques. With the help of this technology, users can identify and keep an eye on the performance of individual appliances without requiring separate meters. The data enables users to make well-informed decisions to minimize energy waste and increase efficiency while maximizing appliance utilization. Furthermore, our technology works flawlessly with smart home systems, providing cloud services for real-time monitoring and control. By lowering overall energy use, this invention not only enables consumers to save on energy expenses but also contributes to larger sustainability initiatives.
+                        </p>
+                    </div>
+
+                    <div   style="margin-top:none;margin-bottom:none;" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-card border border-border rounded-xl p-6 shadow-sm hover-elevate transition-all duration-300">
+                            <div class="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                                <i class="fas fa-microchip h-8 w-8 text-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-serif">IoT Hardware</h3>
+                            <p class="text-muted-foreground mt-2">
+                                Advanced device management with power measurement and carbon dMRV
+                            </p>
+                            <ul class="space-y-2 text-sm text-muted-foreground mt-4">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-secondary mt-0.5">✓</span>
+                                    <span>Real-time device monitoring</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-secondary mt-0.5">✓</span>
+                                    <span>Power measurement & tracking</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-secondary mt-0.5">✓</span>
+                                    <span>Carbon dMRV compliance</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div   style="margin-top:none;margin-bottom:none;" class="bg-card border border-border rounded-xl p-6 shadow-sm hover-elevate transition-all duration-300">
+                            <div class="w-16 h-16 rounded-lg bg-secondary/10 flex items-center justify-center mb-4">
+                                <i class="fas fa-network-wired h-8 w-8 text-secondary"></i>
+                            </div>
+                            <h3 class="text-xl font-serif">SaaS Platform</h3>
+                            <p class="text-muted-foreground mt-2">
+                                Comprehensive software for device, customer, and inventory management
+                            </p>
+                            <ul class="space-y-2 text-sm text-muted-foreground mt-4">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-secondary mt-0.5">✓</span>
+                                    <span>Device management dashboard</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-secondary mt-0.5">✓</span>
+                                    <span>Customer & payment systems</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-secondary mt-0.5">✓</span>
+                                    <span>Inventory tracking</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div   style="margin-top:none;margin-bottom:none;" class="bg-card border border-border rounded-xl p-6 shadow-sm hover-elevate transition-all duration-300">
+                            <div   style="margin-top:none;margin-bottom:none;" class="w-16 h-16 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                                <i class="fas fa-chart-line h-8 w-8 text-accent"></i>
+                            </div>
+                            <h3 class="text-xl font-serif">AI Load Monitoring</h3>
+                            <p class="text-muted-foreground mt-2">
+                                Non-intrusive AI-powered energy analytics and insights
+                            </p>
+                            <ul class="space-y-2 text-sm text-muted-foreground mt-4">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-secondary mt-0.5">✓</span>
+                                    <span>AI-driven load detection</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-secondary mt-0.5">✓</span>
+                                    <span>Energy consumption patterns</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-secondary mt-0.5">✓</span>
+                                    <span>Predictive analytics</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                                   <div  class="bg-card border border-border rounded-xl p-6 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
+                        
+                        <h3 class="text-2xl font-serif">
+                            <i class="fa-solid fa-dumpster"></i>   E-waste Management:
+                        </h3>
+                        <p class="text-muted-foreground mt-2">
+                            The technology assists in tracking e-waste for better management and recycling.
+                        </p>
+                    </div>
+                    <div class="text-center mt-12">
+                        <a href="#products" data-page="products" class="btn-primary">
+                            Learn More About Our Products
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+<section  style="margin-top:none;margin-bottom:none;" class="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"   style="margin-top:none;margin-bottom:none;">
+                    <div class="max-w-3xl mx-auto text-center">
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
+                            Industry Leadership
+                        </h2>
+                        <p class="text-lg text-muted-foreground mb-8">
+                            Recognized for innovation, quality, and customer satisfaction
+                        </p>
+
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-card border border-border rounded-xl p-6 hover-elevate transition-all duration-300">
+                                <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mx-auto mb-2">
+                                    <i class="fa-solid fa-microchip"></i>
+                                </div>
+                                <h3 class="text-base font-semibold">
+                                    End to end IOT hardware Manufacturing
+                                </h3>
+                            </div>
+                            <div class="bg-card border border-border rounded-xl p-6 hover-elevate transition-all duration-300">
+                                <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mx-auto mb-2">
+                                    <i class="fa-solid fa-trophy"></i>
+                                </div>
+                                <h3 class="text-base font-semibold">
+                                    4 Invention and Innovation Awards
+                                </h3>
+                            </div>
+                            <div class="bg-card border border-border rounded-xl p-6 hover-elevate transition-all duration-300"  style="margin-top:none;margin-bottom:none;">
+                                <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mx-auto mb-2">
+                                    <i class="fa-solid fa-arrows-to-circle"></i>
+                                </div>
+                                <h3 class="text-base font-semibold">
+                                    Industry 4.0 Focus
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <style>
+                .imgd{
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            </style>
+            <!-- CTA Section -->
+            <section class="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="display: flex;"   style="margin-top:none;margin-bottom:none;">
+                        <div class="flex justify-center">
+                            <img class="imgd" style="min-width: 400px;" src="1.jpg" alt="Energy Monitoring" class="h-80 w-auto rounded-lg shadow-lg">
+                        </div>
+                                                <div class="flex justify-center">
+                            <img class="imgd" style="min-width: 400px;" src="2.jpg" alt="Energy Monitoring" class="h-80 w-auto rounded-lg shadow-lg">
+                        </div>
+                                                <div class="flex justify-center">
+                            <img class="imgd" style="min-width: 400px;" src="img3.jpg" alt="Energy Monitoring" class="h-80 w-auto rounded-lg shadow-lg">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+                       <section class="py-16 md:py-24 bg-card" data-home-only="true">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4" style="background-image: linear-gradient(to right, #002499, #00BF72); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;">
+                            Our Partners
+                        </h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-9 gap-4">
+                        <!-- Partner slot 1 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="a.png" alt="Partner 1" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 2 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="b.png" alt="Partner 2" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 3 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="c.jpg" alt="Partner 3" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 4 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="d.jpeg" alt="Partner 4" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 5 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="e.png" alt="Partner 5" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 6 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="f.png" alt="Partner 6" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 7 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="g.jpeg" alt="Partner 7" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 8 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="h.jpeg" alt="Partner 8" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 9 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="i.png" alt="Partner 9" class="max-w-full max-h-full object-contain">
+                        </div>
+                        
+                        <!-- Second row -->
+                        <!-- Partner slot 10 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="j.jpg" alt="Partner 10" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 11 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="k.png" alt="Partner 11" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 12 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="l.png" alt="Partner 12" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 13 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="m.jpg" alt="Partner 13" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 14 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="n.jpeg" alt="Partner 14" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 15 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="o.png" alt="Partner 15" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 16 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="p.png" alt="Partner 16" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 17 -->
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                            <img src="z.jpg" alt="Partner 17" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <!-- Partner slot 18 -->
+                    </div>
+                </div>
+            </section> <!-- Our Partners Section -->
+
+        </div>
+
+        <!-- Products Page -->
+        <div id="page-products" class="page hidden">
+            <section class="bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-16 md:py-24 border-b border-border">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl mx-auto text-center">
+                        <h1 class="text-4xl md:text-5xl font-serif font-bold mb-6" style="background-image: linear-gradient(to right, #002499, #00BF72); -webkit-background-clip: text;background-clip: text;-webkit-text-fill-color: transparent;text-fill-color: transparent;color: #004D7A;">
+                            Our Products
+                        </h1>
+                        <p class="text-lg text-muted-foreground">
+                            Cutting-edge IoT solutions designed to transform how you manage
+                            devices, optimize energy consumption, and drive operational excellence.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-16 md:py-24">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+                    <!-- IoT Hardware -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-primary/10 text-primary mb-6">
+                                <i class="fas fa-microchip h-8 w-8"></i>
+                            </div>
+                            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-3">
+                                IoT Hardware
+                            </h2>
+                            <p class="text-lg text-secondary font-medium mb-4">
+                                Advanced Device Management & Power Measurement
+                            </p>
+                            <p class="text-muted-foreground mb-6">
+                                Enterprise-grade IoT hardware solutions designed for comprehensive device management, real-time power measurement, and carbon dMRV compliance. Built for reliability and scalability.
+                            </p>
+                            <a href="#contact" data-page="contact" class="btn-primary">
+                                Request a Demo
+                            </a>
+                        </div>
+                        <div>
+                            <div class="bg-card border border-border rounded-xl p-6">
+                                <h3 class="text-xl font-serif mb-4">Key Features</h3>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Real-time device monitoring and control</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Precision power measurement sensors</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Carbon dMRV tracking and reporting</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Edge computing capabilities</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Industrial-grade durability (IP65+)</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Multi-protocol support (LoRaWAN, NB-IoT, WiFi)</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Remote firmware updates</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Energy harvesting compatible</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SaaS Platform -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="lg:col-start-2">
+                            <div class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-secondary/10 text-secondary mb-6">
+                                <i class="fas fa-network-wired h-8 w-8"></i>
+                            </div>
+                            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-3">
+                                SaaS Platform
+                            </h2>
+                            <p class="text-lg text-secondary font-medium mb-4">
+                                Complete Software-as-a-Service Management Suite
+                            </p>
+                            <p class="text-muted-foreground mb-6">
+                                Cloud-based platform providing end-to-end management for devices, customers, payments, and inventory. Scalable architecture with enterprise-grade security and 99.9% uptime SLA.
+                            </p>
+                            <a href="#contact" data-page="contact" class="btn-primary">
+                                Request a Demo
+                            </a>
+                        </div>
+                        <div class="lg:col-start-1 lg:row-start-1">
+                            <div class="bg-card border border-border rounded-xl p-6">
+                                <h3 class="text-xl font-serif mb-4">Key Features</h3>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Centralized device management dashboard</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Customer relationship management (CRM)</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Automated payment processing</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Real-time inventory tracking</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Role-based access control (RBAC)</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">API & webhook integrations</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Custom reporting and analytics</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Multi-tenant architecture</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Non-Intrusive Load Monitoring -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-accent/10 text-accent mb-6">
+                                <i class="fas fa-chart-line h-8 w-8"></i>
+                            </div>
+                            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-3">
+                                AI Non-Intrusive Load Monitoring
+                            </h2>
+                            <p class="text-lg text-secondary font-medium mb-4">
+                                Intelligent Energy Analytics & Insights
+                            </p>
+                            <p class="text-muted-foreground mb-6">
+                                AI-powered load monitoring that identifies individual appliances and equipment without additional sensors. Machine learning algorithms provide actionable insights for energy optimization.
+                            </p>
+                            <a href="#contact" data-page="contact" class="btn-primary">
+                                Request a Demo
+                            </a>
+                        </div>
+                        <div>
+                            <div class="bg-card border border-border rounded-xl p-6">
+                                <h3 class="text-xl font-serif mb-4">Key Features</h3>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Non-intrusive appliance detection</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Real-time energy consumption analytics</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Predictive maintenance alerts</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Load disaggregation algorithms</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Anomaly detection and alerting</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Energy optimization recommendations</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Historical trend analysis</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle h-5 w-5 text-secondary flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-sm">Carbon footprint calculation</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Section -->
+
+
+            <!-- Final CTA Section -->
+            <section class="py-16 md:py-24">
+                <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
+                        Ready to Get Started?
+                    </h2>
+                    <p class="text-lg text-muted-foreground mb-8">
+                        Schedule a demo to see how our products can transform your operations
+                    </p>
+                    <a href="#contact" data-page="contact" class="btn-primary">
+                        Request a Product Demo
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Features Page -->
+        
+        <!-- Support Page -->
+        <div id="page-support" class="page hidden" style="text-align: center;">
+            <section class="py-16 md:py-24">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center space-y-4 mb-16">
+                        <h1 class="text-4xl md:text-5xl font-serif font-bold">Support & Contact</h1>
+                        <p class="text-lg text-muted-foreground max-w-3xl mx-auto">
+                            We're here to help you succeed with our comprehensive support services and expert team.
+                        </p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-12">
+                        <div class="space-y-8">
+                            <div>
+                                <h2 class="text-2xl font-serif font-bold mb-4">Get in Touch</h2>
+                                <p class="text-muted-foreground mb-6">
+                                    Have questions about our products or need technical support? Our team is ready to help.
+                                </p>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-phone text-primary"></i>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div class="font-semibold"></div>
+                                        <div class="text-muted-foreground" style="display: flex;"> 0725481878
+                                    </div>
+                                    
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-envelope text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold"></div>
+                                        <div class="text-muted-foreground"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="21525451514e535561484e550c524e4d5455484e4f520f424e4c"><span class="__cf_email__" data-cfemail="5233363f3b3c12223d25372022332b3334203b31337c313d3f">support@powerpayafrica.com</span></a></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-clock text-primary"></i>
+                                    </div>
+                                    <div style="min-width: 300px;">
+                                        <div class="font-semibold">Business Hours</div>
+                                        <div class="text-muted-foreground">Monday - Friday, 8AM - 5PM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-card border border-border rounded-xl p-8 shadow-lg">
+                            <h3 class="text-xl font-serif font-semibold mb-6">Send us a Message</h3>
+                            <form class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Name</label>
+                                    <input type="text" class="w-full p-3 border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Your name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Email</label>
+                                    <input type="email" class="w-full p-3 border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="your@email.com">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Subject</label>
+                                    <input type="text" class="w-full p-3 border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="How can we help?">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Message</label>
+                                    <textarea rows="4" class="w-full p-3 border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tell us more about your needs..."></textarea>
+                                </div>
+                                <button type="submit" class="w-full btn-primary">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact/Demo Page -->
+        <div id="page-contact" class="page hidden">
+            <section class="py-16 md:py-24">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div class="bg-card border border-border rounded-xl p-12 shadow-lg">
+                        <i class="fas fa-envelope-open text-6xl text-primary mb-6"></i>
+                        <h1 class="text-4xl font-serif font-bold mb-4">Contact Us</h1>
+                        <p class="text-lg text-muted-foreground mb-8">
+                            Ready to get started? Contact our team to discuss your IoT manufacturing needs.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="text-lg">
+                                <i class="fas fa-phone text-primary mr-2"></i>
+                                0725481878
+                            </div>
+                            <div class="text-lg">
+                                <i class="fas fa-envelope text-primary mr-2"></i>
+                                <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afc6c1c9c0efc6c0db82dcc0c3dadbc6c0c1dc81ccc0c2">support@powerpayafrica.com</a>
+                            </div>
+                        </div>
+                        <a href="#support" data-page="support" class="btn-primary mt-8 inline-block">Get in Touch</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-card border-t border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <div class="text-xl font-serif font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Contact Us</div>
+                    <p class="text-muted-foreground">
+                        <i class="fa-solid fa-phone"></i>: 0725481878
+                        <br>
+                        <i class="fa-solid fa-envelope"></i>: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="640500090d0a24140b13011614051d0502160d07054a070b09">admin@powerpayafrica.com</a>
+                        <br>
+                        <i class="fa-solid fa-location-dot"></i>: Kiambu Road
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Follow Us</h3>
+                    <div class="flex gap-4">
+                        <a href="https://ke.linkedin.com/company/green-innovation-ventures-enterprises-ltd" class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://x.com/search?q=%23powerpay&src=hashtag_click&f=user" class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <i class="fab fa-x"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@PowerPayAfrica" class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
+                <p>&copy; 2025 PowerPayAfrica. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Page management
+        const pages = {
+            home: document.getElementById('page-home'),
+            products: document.getElementById('page-products'),
+            support: document.getElementById('page-support'),
+            contact: document.getElementById('page-contact')
+        };
+
+        function showPage(pageId) {
+            // Hide all pages
+            Object.values(pages).forEach(page => {
+                if (page) page.classList.add('hidden');
+            });
+
+            // Show selected page
+            if (pages[pageId]) {
+                pages[pageId].classList.remove('hidden');
+            } else {
+                pages.home.classList.remove('hidden'); // Default to home
+            }
+
+            // Update navigation
+            updateNavigation(pageId);
+            
+            // Handle home-only content visibility
+            const homeOnlyElements = document.querySelectorAll('[data-home-only]');
+            if (pageId === 'home') {
+                homeOnlyElements.forEach(element => {
+                    element.style.display = '';
+                });
+            } else {
+                homeOnlyElements.forEach(element => {
+                    element.style.display = 'none';
+                });
+            }
+            
+            // Close mobile menu
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.remove('open');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function updateNavigation(activePage) {
+            // Update desktop navigation
+            document.querySelectorAll('nav a[data-page]').forEach(link => {
+                link.classList.remove('text-primary');
+                link.classList.add('text-muted-foreground');
+                if (link.dataset.page === activePage) {
+                    link.classList.remove('text-muted-foreground');
+                    link.classList.add('text-primary');
+                }
+            });
+        }
+
+        // Handle navigation clicks
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('a[data-page]') || e.target.closest('a[data-page]')) {
+                e.preventDefault();
+                const link = e.target.matches('a[data-page]') ? e.target : e.target.closest('a[data-page]');
+                const pageId = link.dataset.page;
+                if (pageId) {
+                    showPage(pageId);
+                }
+            }
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-toggle').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Theme toggle
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', () => {
+            const hash = window.location.hash.slice(1) || 'home';
+            showPage(hash);
+        });
+
+        // Form submission (demo)
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                form.reset();
+            });
+        });
+
+        // Initial page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.slice(1) || 'home';
+            showPage(hash);
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animate progress bars on page load
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach((bar, index) => {
+                setTimeout(() => {
+                    bar.style.width = bar.style.width || (index % 2 === 0 ? '75%' : '67%');
+                }, 300);
+            });
+        }
+
+        // Animate stats on page load
+        function animateStats() {
+            const stats = document.querySelectorAll('.text-3xl.font-serif.font-bold');
+            stats.forEach(stat => {
+                const finalValue = stat.textContent;
+                if (finalValue.includes('K') || finalValue.includes('%') || finalValue.includes('±')) {
+                    return; // Skip non-numeric stats
+                }
+                
+                const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
+                if (numericValue > 0) {
+                    let currentValue = 0;
+                    const increment = numericValue / 30;
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= numericValue) {
+                            stat.textContent = finalValue;
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = Math.floor(currentValue).toLocaleString() + finalValue.replace(/\d/g, '').replace(/\+/g, '');
+                        }
+                    }, 50);
+                }
+            });
+        }
+
+        // Initialize animations
+        setTimeout(animateProgressBars, 500);
+        setTimeout(animateStats, 1000);
+    </script>
+</body>
+</html>
