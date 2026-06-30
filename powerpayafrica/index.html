@@ -372,12 +372,26 @@
             height: 60px;
             width: auto;
         }
+
+        /* Slightly bigger AFD and EU partner logos */
+        .partner-logo-bigger {
+            padding: 0.35rem !important;
+            overflow: hidden;
+        }
+
+        .partner-logo-bigger img {
+            width: 112% !important;
+            height: 112% !important;
+            max-width: 112% !important;
+            max-height: 112% !important;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="sticky top-0 z-50 w-full border-b border-border bg-card backdrop-blur supports-[backdrop-filter]:bg-card/95">
-        <div   style="margin-top:none;margin-bottom:none;"class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div style="margin-top:none;margin-bottom:none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 items-center justify-between gap-4">
                 <!-- Logo -->
                 <a href="#home" data-page="home" class="logo-container">
@@ -392,7 +406,7 @@
                 </nav>
 
                 <!-- Theme Toggle and Mobile Menu -->
-                <div  style="margin-top:none;margin-bottom:none;" class="flex items-center gap-2">
+                <div style="margin-top:none;margin-bottom:none;" class="flex items-center gap-2">
                     <button id="theme-toggle" class="p-2 hover:bg-muted rounded-md transition-colors">
                         <i class="fas fa-moon dark:hidden"></i>
                         <i class="fas fa-sun hidden"></i>
@@ -418,8 +432,8 @@
 
     <main class="flex-1">
         <!-- Home Page -->
-        <div id="page-home" class="page"  style="margin-top:none;margin-bottom:none;">
-            <section class="relative bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-16 md:py-24 lg:py-32 overflow-hidden"  style="margin-top:none;margin-bottom:none;">
+        <div id="page-home" class="page" style="margin-top:none;margin-bottom:none;">
+            <section class="relative bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-16 md:py-24 lg:py-32 overflow-hidden" style="margin-top:none;margin-bottom:none;">
                 <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
                     <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -429,7 +443,6 @@
                                 Award Winning IoT/AIoT Hardware and Software Solution Provider for the African Energy Sector.
                                 </span>
                                 <br />
-                            
                             </h2>
                             <p class="text-lg text-muted-foreground">
                                PowerPay Africa is an East Africa -based energy and IoT technology company that provides hardware and software to finance and monitor electric appliances. The company, a spin off of Green Innovation Ventures Enterprises Ltd works with manufacturers, distributors, and lenders to make cooking and  productive-use equipment monitorable, accessible and affordable. 
@@ -447,8 +460,8 @@
             </section>
 
             <!-- Stats Section -->
-            <section  style="margin-top:none;margin-bottom:none;" class="py-16 md:py-24 bg-card" style="margin-top:none;margin-bottom:none;">
-                <div   style="margin-top:none;margin-bottom:none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section style="margin-top:none;margin-bottom:none;" class="py-16 md:py-24 bg-card" style="margin-top:none;margin-bottom:none;">
+                <div style="margin-top:none;margin-bottom:none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                         <div class="text-center">
                             <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-3">
@@ -483,7 +496,7 @@
             </section>
 
             <!-- Product Suite Section -->
-            <section  style="margin-top:none;margin-bottom:none;" class="py-16 md:py-24">
+            <section style="margin-top:none;margin-bottom:none;" class="py-16 md:py-24">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center mb-12">
                         <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4" style="background-image: linear-gradient(to right, #002499, #00BF72); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;">
@@ -494,7 +507,7 @@ PowerPay AI technology provides granular insights into household or SME energy c
                         </p>
                     </div>
 
-                    <div   style="margin-top:none;margin-bottom:none;" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div style="margin-top:none;margin-bottom:none;" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div class="bg-card border border-border rounded-xl p-6 shadow-sm hover-elevate transition-all duration-300">
                             <div class="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                                 <i class="fas fa-microchip h-8 w-8 text-primary"></i>
@@ -519,7 +532,7 @@ PowerPay AI technology provides granular insights into household or SME energy c
                             </ul>
                         </div>
 
-                        <div   style="margin-top:none;margin-bottom:none;" class="bg-card border border-border rounded-xl p-6 shadow-sm hover-elevate transition-all duration-300">
+                        <div style="margin-top:none;margin-bottom:none;" class="bg-card border border-border rounded-xl p-6 shadow-sm hover-elevate transition-all duration-300">
                             <div class="w-16 h-16 rounded-lg bg-secondary/10 flex items-center justify-center mb-4">
                                 <i class="fas fa-network-wired h-8 w-8 text-secondary"></i>
                             </div>
@@ -543,8 +556,8 @@ PowerPay AI technology provides granular insights into household or SME energy c
                             </ul>
                         </div>
 
-                        <div   style="margin-top:none;margin-bottom:none;" class="bg-card border border-border rounded-xl p-6 shadow-sm hover-elevate transition-all duration-300">
-                            <div   style="margin-top:none;margin-bottom:none;" class="w-16 h-16 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                        <div style="margin-top:none;margin-bottom:none;" class="bg-card border border-border rounded-xl p-6 shadow-sm hover-elevate transition-all duration-300">
+                            <div style="margin-top:none;margin-bottom:none;" class="w-16 h-16 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
                                 <i class="fas fa-chart-line h-8 w-8 text-accent"></i>
                             </div>
                             <h3 class="text-xl font-serif">AI Load Monitoring</h3>
@@ -567,8 +580,8 @@ PowerPay AI technology provides granular insights into household or SME energy c
                             </ul>
                         </div>
                     </div>
-                                   <div  class="bg-card border border-border rounded-xl p-6 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
-                        
+
+                    <div class="bg-card border border-border rounded-xl p-6 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
                         <h3 class="text-2xl font-serif">
                             <i class="fa-solid fa-dumpster"></i>   E-waste Management:
                         </h3>
@@ -576,6 +589,7 @@ PowerPay AI technology provides granular insights into household or SME energy c
                             The technology assists in tracking e-waste for better management and recycling.
                         </p>
                     </div>
+
                     <div class="text-center mt-12">
                         <a href="#products" data-page="products" class="btn-primary">
                             Learn More About Our Products
@@ -584,8 +598,8 @@ PowerPay AI technology provides granular insights into household or SME energy c
                 </div>
             </section>
             
-<section  style="margin-top:none;margin-bottom:none;" class="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"   style="margin-top:none;margin-bottom:none;">
+            <section style="margin-top:none;margin-bottom:none;" class="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="margin-top:none;margin-bottom:none;">
                     <div class="max-w-3xl mx-auto text-center">
                         <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
                             Industry Leadership
@@ -611,7 +625,7 @@ PowerPay AI technology provides granular insights into household or SME energy c
                                     4 Innovation Awards
                                 </h3>
                             </div>
-                            <div class="bg-card border border-border rounded-xl p-6 hover-elevate transition-all duration-300"  style="margin-top:none;margin-bottom:none;">
+                            <div class="bg-card border border-border rounded-xl p-6 hover-elevate transition-all duration-300" style="margin-top:none;margin-bottom:none;">
                                 <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mx-auto mb-2">
                                     <i class="fa-solid fa-arrows-to-circle"></i>
                                 </div>
@@ -630,23 +644,23 @@ PowerPay AI technology provides granular insights into household or SME energy c
                     padding-right: 20px;
                 }
             </style>
+
             <!-- CTA Section -->
             <section class="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="display: flex;"   style="margin-top:none;margin-bottom:none;">
-                        <div class="flex justify-center">
-                            <img class="imgd" style="min-width: 400px;" src="1.jpg" alt="Energy Monitoring" class="h-80 w-auto rounded-lg shadow-lg">
-                        </div>
-                                                <div class="flex justify-center">
-                            <img class="imgd" style="min-width: 400px;" src="2.jpg" alt="Energy Monitoring" class="h-80 w-auto rounded-lg shadow-lg">
-                        </div>
-                                                <div class="flex justify-center">
-                            <img class="imgd" style="min-width: 400px;" src="img3.jpg" alt="Energy Monitoring" class="h-80 w-auto rounded-lg shadow-lg">
-                        </div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="display: flex;" style="margin-top:none;margin-bottom:none;">
+                    <div class="flex justify-center">
+                        <img class="imgd" style="min-width: 400px;" src="1.jpg" alt="Energy Monitoring" class="h-80 w-auto rounded-lg shadow-lg">
+                    </div>
+                    <div class="flex justify-center">
+                        <img class="imgd" style="min-width: 400px;" src="2.jpg" alt="Energy Monitoring" class="h-80 w-auto rounded-lg shadow-lg">
+                    </div>
+                    <div class="flex justify-center">
+                        <img class="imgd" style="min-width: 400px;" src="img3.jpg" alt="Energy Monitoring" class="h-80 w-auto rounded-lg shadow-lg">
                     </div>
                 </div>
             </section>
 
-                       <section class="py-16 md:py-24 bg-card" data-home-only="true">
+            <section class="py-16 md:py-24 bg-card" data-home-only="true">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center mb-12">
                         <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4" style="background-image: linear-gradient(to right, #002499, #00BF72); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;">
@@ -656,11 +670,11 @@ PowerPay AI technology provides granular insights into household or SME energy c
                     
                     <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-9 gap-4">
                         <!-- Partner slot 1 -->
-                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2 partner-logo-bigger">
                             <img src="afd.png" alt="Partner 1" class="max-w-full max-h-full object-contain">
                         </div>
 
-                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
+                        <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2 partner-logo-bigger">
                             <img src="eu.png" alt="Partner 1" class="max-w-full max-h-full object-contain">
                         </div>
 
@@ -684,10 +698,12 @@ PowerPay AI technology provides granular insights into household or SME energy c
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="c.jpg" alt="Partner 3" class="max-w-full max-h-full object-contain">
                         </div>
+
                         <!-- Partner slot 4 -->
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="d.jpeg" alt="Partner 4" class="max-w-full max-h-full object-contain">
                         </div>
+
                         <!-- Partner slot 5 -->
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="e.png" alt="Partner 5" class="max-w-full max-h-full object-contain">
@@ -697,45 +713,53 @@ PowerPay AI technology provides granular insights into household or SME energy c
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="g.jpeg" alt="Partner 7" class="max-w-full max-h-full object-contain">
                         </div>
+
                         <!-- Partner slot 8 -->
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="h.jpeg" alt="Partner 8" class="max-w-full max-h-full object-contain">
                         </div>
-                        
                         
                         <!-- Second row -->
                         <!-- Partner slot 10 -->
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="j.jpg" alt="Partner 10" class="max-w-full max-h-full object-contain">
                         </div>
+
                         <!-- Partner slot 11 -->
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="k.png" alt="Partner 11" class="max-w-full max-h-full object-contain">
                         </div>
+
                         <!-- Partner slot 12 -->
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="l.png" alt="Partner 12" class="max-w-full max-h-full object-contain">
                         </div>
+
                         <!-- Partner slot 13 -->
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="m.jpg" alt="Partner 13" class="max-w-full max-h-full object-contain">
                         </div>
+
                         <!-- Partner slot 14 -->
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="n.jpeg" alt="Partner 14" class="max-w-full max-h-full object-contain">
                         </div>
+
                         <!-- Partner slot 15 -->
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="o.png" alt="Partner 15" class="max-w-full max-h-full object-contain">
                         </div>
+
                         <!-- Partner slot 16 -->
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="p.png" alt="Partner 16" class="max-w-full max-h-full object-contain">
                         </div>
+
                         <!-- Partner slot 17 -->
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="z.jpg" alt="Partner 17" class="max-w-full max-h-full object-contain">
                         </div>
+
                         <!-- Partner slot 18 -->
                         <div class="aspect-square bg-muted border border-border rounded-xl flex items-center justify-center hover-elevate transition-all duration-300 p-2">
                             <img src="gsma.png" alt="Partner 18" class="max-w-full max-h-full object-contain">
@@ -946,9 +970,6 @@ PowerPay AI technology provides granular insights into household or SME energy c
                 </div>
             </section>
 
-            <!-- Why Choose Section -->
-
-
             <!-- Final CTA Section -->
             <section class="py-16 md:py-24">
                 <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -995,7 +1016,6 @@ PowerPay AI technology provides granular insights into household or SME energy c
                                         <div class="font-semibold"></div>
                                         <div class="text-muted-foreground" style="display: flex;"> 0725481878
                                     </div>
-                                    
                                 </div>
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -1107,7 +1127,9 @@ PowerPay AI technology provides granular insights into household or SME energy c
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
         // Page management
         const pages = {
             home: document.getElementById('page-home'),
